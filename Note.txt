@@ -1,0 +1,55 @@
+The Rediit Project
+https://rediit.netlify.app/
+
+ERD (Entity Relational Diagram)
+
+Collections:
+    - 1. User: {
+        username
+        password
+    }
+
+    - 2. Hashtag: {
+        name,
+        // (description),
+        createAt,
+        postsCount (number)
+        recentPosts [] -> limit the array lentgh
+    }
+
+    - 3. Post: {
+        title,
+        content,
+        🟢likes, (number) [array] -> need to know who click the like -> need a single table
+        comments, (only number, no content, no limits)
+        hashtags, ([ObjectId])
+        user,
+        createAt,
+        updatedAt
+        (isDeleted, deletedAt)
+    }
+
+    - 4. Comment: {
+        user,
+        content,
+        post, -> which post's comment
+        likes,
+        createAt,
+        updatedAt
+
+        // replies:[{userId, content}] - thread, -> can comment in chain -> if limits
+
+        // parentComment -> use this to relate -> no limits / can use depth to limit
+    }
+
+    - 5. Like: {
+        user,
+        targetType (post, comment)
+        targetId
+        post
+        createAt
+    }
+
+    indexing
+
+    mongoose -> transaction -> startSession() -> session.withTransaction(xxxx)
