@@ -33,8 +33,8 @@ This project is a simplified Reddit clone that demonstrates full-stack developme
 
 1. Clone the repository
 ```bash
-git clone https://github.com/yourusername/fullstack-reddit-mock.git
-cd fullstack-reddit-mock
+git clone https://github.com/yourusername/Backend-Reddit-Mock.git
+cd Backend-Reddit-Mock
 ```
 
 2. Install dependencies for backend
