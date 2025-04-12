@@ -1,0 +1,14 @@
+Black Box Testing
+ -  send param, compare the result, you dont know what's inside
+White Box Testing
+    - you know the logic, write test for code itself
+
+
+3 Types of Testing:
+    - Unit test -> specific func only / if rely on other func -> need mock a Dependence
+    - Integration test -> real relate together, no mock
+    - end to end (E2E) -> simulate a real user behaviour (front to back)
+
+jest -> auto test
+
+test coverage -> fully cover all the happy path / edge case
