@@ -9,6 +9,8 @@ White Box Testing
     - Integration test -> real relate together, no mock
     - end to end (E2E) -> simulate a real user behaviour (front to back)
 
-jest -> auto test
+jest -> auto test -> two it() test will be independent and no repeating
 
 test coverage -> fully cover all the happy path / edge case
+
+super test -> mock a container
