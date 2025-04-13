@@ -13,8 +13,7 @@ const errorMiddleware = require("./middleware/error/index");
 // 3. Setting Logger - winston - pay attention to the destructuring cus there are two objects in the module.exports
 const { logger } = require("./utils/logger");
 const v1Router = require("./routes");
-const { connect } = require("mongoose");
-const connectToDb = require("./utils/db");
+
 
 const app = express();
 

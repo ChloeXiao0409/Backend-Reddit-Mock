@@ -5,6 +5,8 @@ const app = require("./app");
 const config = require("./utils/config");
 // 3. Setting Logger - winston - pay attention to the destructuring cus there are two objects in the module.exports
 const { logger } = require("./utils/logger");
+const { connect } = require("mongoose");
+const connectToDb = require("./utils/db");
 
 // 9. Database Connection
 connectToDb();
