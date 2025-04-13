@@ -1,6 +1,10 @@
 const {Router} = require('express');
 const authRouter = require('./auth.route');
-const {public, private, adminPath} = require('../controllers/test.controller');
+// const {
+//     public, 
+//     private,
+//     adminPath
+// } = require('../controllers/test.controller');
 const authGuardMiddleware = require('../middleware/authGuard.middleware');
 const roleGuardMiddleware = require('../middleware/roleGuard.middleware');
 const postRouter = require('./post.route');
@@ -17,8 +21,8 @@ v1Router.use("/comments", commentRouter);
 v1Router.use("/likes", authGuardMiddleware, likeRouter);
 v1Router.use("/hashtags", hashtagRouter);
 
-v1Router.get("/public", public);
-v1Router.get("/private", authGuardMiddleware, private);
-v1Router.get("/admin", authGuardMiddleware, roleGuardMiddleware("admin"), adminPath);
+// v1Router.get("/public", public);
+// v1Router.get("/private", authGuardMiddleware, private);
+// v1Router.get("/admin", authGuardMiddleware, roleGuardMiddleware("admin"), adminPath);
 
 module.exports = v1Router;
