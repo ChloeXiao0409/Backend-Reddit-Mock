@@ -1,0 +1,40 @@
+service: reddit-lambda
+
+useDotenv: true
+
+provider:
+  name: aws
+  runtime: nodejs18.x
+  region: ap-southeast-2
+  stage: ${opt:stage, 'development'}
+
+  deploymentBucket:
+    blockPublicAccess: true
+  
+  httpApi:
+    disableDefaultEndpoint: false
+    metrics: false
+    cors: true
+  
+  environment:
+    DB_CONNECTION_STRING: ${env:DB_CONNECTION_STRING}
+    JWT_KEY: ${env:JWT_KEY}
+
+functions:
+  app:
+    handler: src/serverless.handler
+    timeout: 10
+    events:
+      - httpApi:
+          path: /{proxy+}
+          method: '*'
+plugins:
+  - serverless-offline
+
+custom:
+  serverless-offline:
+    noPrependStageInUrl: true
+    httpPort: 3000
+
+package:
+  excludeDevDependencies: true
