@@ -1,40 +1,61 @@
+# The name of the service being deployed
 service: reddit-lambda
 
+# Enables the use of environment variables from a .env file
 useDotenv: true
 
 provider:
+  # Specifies the cloud provider (AWS in this case)
   name: aws
+  # Defines the runtime environment for the Lambda functions
   runtime: nodejs18.x
+  # Specifies the AWS region where the service will be deployed
   region: ap-southeast-2
+  # Sets the deployment stage, defaulting to 'development' if not provided
   stage: ${opt:stage, 'development'}
 
   deploymentBucket:
+    # Ensures the deployment bucket has public access blocked
     blockPublicAccess: true
   
   httpApi:
+    # Determines whether the default HTTP API endpoint is disabled
     disableDefaultEndpoint: false
+    # Disables HTTP API metrics collection
     metrics: false
+    # Enables Cross-Origin Resource Sharing (CORS) for the HTTP API
     cors: true
   
   environment:
+    # Environment variable for the database connection string
     DB_CONNECTION_STRING: ${env:DB_CONNECTION_STRING}
+    # Environment variable for the JWT secret key
     JWT_KEY: ${env:JWT_KEY}
 
 functions:
   app:
+    # Specifies the handler function for the Lambda
     handler: src/serverless.handler
+    # Sets the timeout duration for the function in seconds
     timeout: 10
     events:
       - httpApi:
+          # Defines the HTTP API path for the function
           path: /{proxy+}
+          # Allows all HTTP methods for the function
           method: '*'
+
 plugins:
+  # Adds the serverless-offline plugin for local development
   - serverless-offline
 
 custom:
   serverless-offline:
+    # Prevents the stage from being prepended to the local URL
     noPrependStageInUrl: true
+    # Sets the HTTP port for the offline server
     httpPort: 3000
 
 package:
+  # Excludes development dependencies from the deployment package
   excludeDevDependencies: true
