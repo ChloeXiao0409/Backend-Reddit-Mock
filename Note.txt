@@ -53,3 +53,18 @@ Collections:
     indexing
 
     mongoose -> transaction -> startSession() -> session.withTransaction(xxxx)
+
+
+Deployment:
+
+AWS Lambda (serverless function) -> cold start
+request -> aws api gateway
+serverless framework
+    - Infrastructure as Code (IaC)
+-> serverless.yml
+
+    - AWS S3 store the code and Lambda trigger to use the specific logic
+    - AWS Cloudwatch -> logs store
+    - AWS Cloudformation -> source management
+    - AWS IAM (identity access manager)
+    - AWS SSM (System manager) store metadate for S3
