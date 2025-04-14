@@ -29,6 +29,10 @@ This project is a simplified Reddit clone that demonstrates full-stack developme
 - JWT for authentication
 - Bcrypt for password hashing
 
+### Deployment
+- Serverless deployment using AWS Lambda and API Gateway
+- MongoDB Atlas for cloud database hosting
+
 ## Installation
 
 1. Clone the repository
@@ -48,7 +52,7 @@ Create a `.env` file in the server directory with the following variables:
 ```
 PORT=4000
 LOG_LEVEL=debug
-DB_CONNECTION_STRING=mongodb://localhost:27017/app
+DB_CONNECTION_STRING=mongodb+srv://<username>:<password>@cluster.mongodb.net/app
 JWT_KEY=secret
 ```
 
@@ -57,6 +61,19 @@ JWT_KEY=secret
 # Start backend server
 npm run dev
 ```
+
+## Testing
+
+This project includes unit and integration tests to ensure the reliability of the application.
+
+1. Run tests using the following command:
+```bash
+npm test
+```
+
+2. Testing framework used:
+- Jest for unit testing
+- Supertest for API endpoint testing
 
 ## Usage
 After installation, you can access the application at `http://localhost:4000`
