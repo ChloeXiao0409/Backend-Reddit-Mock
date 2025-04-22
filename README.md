@@ -111,6 +111,42 @@ After installation, you can access the application at `http://localhost:4000`
 4. Push to the branch (`git push origin feature/amazing-feature`)
 5. Open a Pull Request
 
+## Deployment
+
+This project is deployed using AWS services for scalability and reliability.
+
+### Backend Deployment
+- **AWS Lambda**: The backend is hosted as serverless functions.
+- **API Gateway**: Used to expose the Lambda functions as RESTful API endpoints.
+- **MongoDB Atlas**: Cloud-hosted database for storing application data.
+
+### Steps to Deploy
+1. **Set up AWS CLI**:
+   Ensure you have the AWS CLI installed and configured with your credentials:
+   ```bash
+   aws configure
+   ```
+
+2. **Package and Deploy Lambda Functions**:
+   Use the AWS SAM CLI or Serverless Framework to package and deploy the backend:
+   ```bash
+   sam package --template-file template.yaml --output-template-file packaged.yaml --s3-bucket <your-s3-bucket-name>
+   sam deploy --template-file packaged.yaml --stack-name BackendRedditMock --capabilities CAPABILITY_IAM
+   ```
+
+3. **Configure API Gateway**:
+   Link the deployed Lambda functions to API Gateway endpoints.
+
+4. **Environment Variables**:
+   Ensure the required environment variables (e.g., `DB_CONNECTION_STRING`, `JWT_KEY`) are set in the Lambda function configuration.
+
+5. **Access the Application**:
+   Once deployed, the API can be accessed via the API Gateway URL provided after deployment.
+
+### Notes
+- Monitor the application using AWS CloudWatch for logs and performance metrics.
+- Use MongoDB Atlas dashboard for database management.
+
 ## License
 
 This project is licensed under the MIT License - see the LICENSE file for details.
